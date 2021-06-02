@@ -22,7 +22,6 @@
     "--filesystem=home",
     /* Allow other instances to see lockfiles */
     "--env=TMPDIR=/var/tmp",
-    "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1",
     /* On SuSE it seems to be necessary for sound to work */
     "--env=ALSA_CONFIG_PATH=",
     "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
@@ -59,13 +58,15 @@
       "name": "rosegarden",
       "buildsystem": "cmake-ninja",
       "post-install": [
+        "mv ${FLATPAK_DEST}/share/mime/packages/{rosegarden,$FLATPAK_ID}.xml",
+        "cd ${FLATPAK_DEST}/share/icons/hicolor; for d in */mimetypes/; do for f in ${d}*; do mv \"$f\" \"${d}${FLATPAK_ID}.$(basename $f)\"; done; done",
         "install -d /app/extensions/Plugins"
       ],
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/20.12/rosegarden-20.12.tar.bz2",
-          "sha256": "886684afc5858a9578234d1f845188db130114f7fbf38208c4d5ecda15131c5b"
+          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/21.06/rosegarden-21.06.tar.bz2",
+          "sha256": "cde4fde48d01024a03bd7a96f63f9c6e7324728214183ceb605018f89faf0b66"
         }
       ]
     }
