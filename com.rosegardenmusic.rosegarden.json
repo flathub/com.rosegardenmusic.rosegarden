@@ -71,6 +71,10 @@
         {
           "type": "patch",
           "path": "rosegarden-mime-icon.patch"
+        },
+        {
+          "type": "patch",
+          "path": "rosegarden-issue-1599.patch"
         }
       ]
     }
