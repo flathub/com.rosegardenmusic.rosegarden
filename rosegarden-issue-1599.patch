@@ -1,0 +1,97 @@
+From 9713720e9dbf19003649107e3ec5e8922e41b063 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Pedro=20L=C3=B3pez-Cabanillas?= <plcl@users.sourceforge.net>
+Date: Thu, 3 Jun 2021 15:25:43 +0200
+Subject: [PATCH] Fixed usage of QGuiApplication::screenAt(QPoint(0, 0))
+
+QGuiApplication::screenAt(QPoint(0, 0)) may return nullptr if
+QPoint(0,0) does not belong to any screen. This is a fix for
+ticket #1599.
+---
+ .../editors/segment/compositionview/AudioPreviewPainter.cpp    | 3 ++-
+ src/gui/general/AutoScroller.cpp                               | 3 ++-
+ src/gui/widgets/ScrollBox.cpp                                  | 2 +-
+ src/gui/widgets/SqueezedLabel.cpp                              | 2 +-
+ src/gui/widgets/StartupLogo.cpp                                | 2 +-
+ 5 files changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/src/gui/editors/segment/compositionview/AudioPreviewPainter.cpp b/src/gui/editors/segment/compositionview/AudioPreviewPainter.cpp
+index 3fbdeffb7..3c72647bd 100644
+--- a/src/gui/editors/segment/compositionview/AudioPreviewPainter.cpp
++++ b/src/gui/editors/segment/compositionview/AudioPreviewPainter.cpp
+@@ -27,6 +27,7 @@
+ #include "base/Studio.h"
+ #include "misc/Debug.h"
+ #include "misc/ConfigGroups.h"
++#include "gui/application/RosegardenMainWindow.h"
+ 
+ #include <QImage>
+ #include <QApplication>
+@@ -71,7 +72,7 @@ int AudioPreviewPainter::tileWidth()
+         return tw;
+ 
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+-    QScreen* screen = QGuiApplication::screenAt(QPoint(0, 0));
++    QScreen* screen = RosegardenMainWindow::self()->screen();
+     tw = screen->availableGeometry().width();
+ #else
+     tw = QApplication::desktop()->width();
+diff --git a/src/gui/general/AutoScroller.cpp b/src/gui/general/AutoScroller.cpp
+index 874a533c7..6f9013763 100644
+--- a/src/gui/general/AutoScroller.cpp
++++ b/src/gui/general/AutoScroller.cpp
+@@ -24,6 +24,7 @@
+ #include <QAbstractScrollArea>
+ #include <QApplication>
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
++#include <QWindow>
+ #include <QScreen>
+ #else
+ #include <QDesktopWidget>
+@@ -133,7 +134,7 @@ AutoScroller::doAutoScroll()
+             int xOffset = 0;
+ 
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+-            QScreen* screen = QGuiApplication::screenAt(QPoint(0, 0));
++            QScreen* screen = m_abstractScrollArea->screen();
+             const int rightSideOfScreen = screen->geometry().right();
+ #else
+             const int rightSideOfScreen = QApplication::desktop()->
+diff --git a/src/gui/widgets/ScrollBox.cpp b/src/gui/widgets/ScrollBox.cpp
+index dbd907668..0a8a037ee 100644
+--- a/src/gui/widgets/ScrollBox.cpp
++++ b/src/gui/widgets/ScrollBox.cpp
+@@ -107,7 +107,7 @@ void ScrollBox::setPageSize(const QSize& s)
+     setFixedHeight(100);
+ 
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+-    QScreen* screen = QGuiApplication::screenAt(QPoint(0, 0));
++    QScreen* screen = this->screen();
+     int dw = screen->availableGeometry().width();
+     int dh = screen->availableGeometry().height();
+ #else
+diff --git a/src/gui/widgets/SqueezedLabel.cpp b/src/gui/widgets/SqueezedLabel.cpp
+index cfa6b8515..9b875130e 100644
+--- a/src/gui/widgets/SqueezedLabel.cpp
++++ b/src/gui/widgets/SqueezedLabel.cpp
+@@ -89,7 +89,7 @@ QSize SqueezedLabel::minimumSizeHint() const
+ QSize SqueezedLabel::sizeHint() const
+ {
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+-    QScreen* screen = QGuiApplication::screenAt(QPoint(0, 0));
++    QScreen* screen = this->screen();
+     int dw = screen->availableGeometry().width();
+ #else
+     int dw = QApplication::desktop()->availableGeometry(QPoint(0, 0)).width();
+diff --git a/src/gui/widgets/StartupLogo.cpp b/src/gui/widgets/StartupLogo.cpp
+index 32e088397..d06119e9a 100644
+--- a/src/gui/widgets/StartupLogo.cpp
++++ b/src/gui/widgets/StartupLogo.cpp
+@@ -55,7 +55,7 @@ StartupLogo::StartupLogo(QWidget * parent) :
+ #endif
+ 
+ #if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+-    QScreen* screen = QGuiApplication::screenAt(QPoint(0, 0));
++    QScreen* screen = this->screen();
+     int dw = screen->availableGeometry().width();
+     int dh = screen->availableGeometry().height();
+ #else
