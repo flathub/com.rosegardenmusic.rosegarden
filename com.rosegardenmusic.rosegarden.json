@@ -25,7 +25,7 @@
     /* On SuSE it seems to be necessary for sound to work */
     "--env=ALSA_CONFIG_PATH=",
     "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
-    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa"
+    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/lib/ladspa"
   ],
   "add-extensions": {
     "org.freedesktop.LinuxAudio.Plugins": {
@@ -65,8 +65,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/21.06/rosegarden-21.06.1.tar.bz2",
-          "sha256": "87750dc0b55ae27e07acc4effdc25ae5c4f6ba4ccf81ac5112abb0fed211397a"
+          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/21.12/rosegarden-21.12.tar.bz2",
+          "sha256": "dc3ed3db064e754de9fe830b69df40a53dc7157fbfa8a206ca82e5e41c262809"
         },
         {
           "type": "patch",
