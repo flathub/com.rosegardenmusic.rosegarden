@@ -1,7 +1,7 @@
 {
   "app-id": "com.rosegardenmusic.rosegarden",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.15-21.08",
+  "runtime-version": "5.15-22.08",
   "sdk": "org.kde.Sdk",
   "command": "rosegarden",
   "rename-appdata-file": "rosegarden.appdata.xml",
@@ -17,7 +17,6 @@
     "--device=all",
     /* For pipewire */
     "--filesystem=xdg-run/pipewire-0",
-    "--system-talk-name=org.freedesktop.RealtimeKit1",
     /* Allow loading, saving files from anywhere (portals don’t work yet) */
     "--filesystem=home",
     /* Allow other instances to see lockfiles */
@@ -30,7 +29,7 @@
   "add-extensions": {
     "org.freedesktop.LinuxAudio.Plugins": {
         "directory": "extensions/Plugins",
-        "version": "21.08",
+        "version": "22.08",
         "add-ld-path": "lib",
         "merge-dirs": "ladspa;dssi",
         "subdirectories": true,
@@ -50,7 +49,6 @@
   ],
   "modules": [
     "shared-modules/linux-audio/lrdf.json",
-    "shared-modules/linux-audio/jack2.json",
     "shared-modules/linux-audio/liblo.json",
     "shared-modules/linux-audio/fftw3f.json",
     "shared-modules/linux-audio/dssi.json",
@@ -65,8 +63,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/22.06/rosegarden-22.06.tar.bz2",
-          "sha256": "9024825155ebb1be8b4af567f3502026957398fdefd086e23fe399f1d033fadb"
+          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/22.12/rosegarden-22.12.tar.bz2",
+          "sha256": "df7e7e143875e092b34f2fe5f6fdee0ebecd7cfbbcdcb922a5ebc84addf03d18"
         },
         {
           "type": "patch",
