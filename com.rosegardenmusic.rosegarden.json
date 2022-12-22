@@ -63,8 +63,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/22.12/rosegarden-22.12.tar.bz2",
-          "sha256": "df7e7e143875e092b34f2fe5f6fdee0ebecd7cfbbcdcb922a5ebc84addf03d18"
+          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/22.12/rosegarden-22.12.1.tar.bz2",
+          "sha256": "7ea7a27f7ee5c49781708f9c615a51919b892264a599e64edf2cd23733d99206"
         },
         {
           "type": "patch",
