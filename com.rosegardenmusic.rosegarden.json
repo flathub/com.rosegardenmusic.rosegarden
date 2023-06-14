@@ -64,7 +64,12 @@
         {
           "type": "archive",
           "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/23.06/rosegarden-23.06.tar.xz",
-          "sha256": "1f34578bf47bac364faf1c6c14daaedaa387a4f3b19704f5ba868f4ecd2d72cc"
+          "sha256": "1f34578bf47bac364faf1c6c14daaedaa387a4f3b19704f5ba868f4ecd2d72cc",
+          "x-checked-data": {
+              "type": "anitya",
+              "project-id": 8939,
+              "url-template": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/$version/rosegarden-$version.tar.xz"
+          }
         },
         {
           "type": "patch",
