@@ -1,7 +1,7 @@
 {
   "app-id": "com.rosegardenmusic.rosegarden",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.15-22.08",
+  "runtime-version": "5.15-23.08",
   "sdk": "org.kde.Sdk",
   "command": "rosegarden",
   "rename-appdata-file": "rosegarden.appdata.xml",
@@ -29,7 +29,7 @@
   "add-extensions": {
     "org.freedesktop.LinuxAudio.Plugins": {
         "directory": "extensions/Plugins",
-        "version": "22.08",
+        "version": "23.08",
         "add-ld-path": "lib",
         "merge-dirs": "ladspa;dssi",
         "subdirectories": true,
