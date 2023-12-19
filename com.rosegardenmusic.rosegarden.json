@@ -10,7 +10,6 @@
     /* X11 + XShm access */
     "--share=ipc",
     "--socket=x11",
-    "--env=QT_QPA_PLATFORM=xcb",
     /* Note playback */
     "--socket=pulseaudio",
     /* MIDI */
@@ -63,8 +62,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/23.06/rosegarden-23.06.tar.xz",
-          "sha256": "1f34578bf47bac364faf1c6c14daaedaa387a4f3b19704f5ba868f4ecd2d72cc",
+          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/23.12/rosegarden-23.12.tar.xz",
+          "sha256": "3f57e66460044efea082379c9706612fe135b6e81f16cbf0bebe859174fe9332",
           "x-checked-data": {
               "type": "anitya",
               "project-id": 8939,
