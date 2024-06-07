@@ -75,7 +75,7 @@
           "paths": [
               "rosegarden-mime-icon.patch",
               "rosegarden-desktop-file-keywords.patch",
-              "rosegarden-appdata-id-and-desktop-launchable.patch"
+              "rosegarden-appdata-desktop-launchable.patch"
           ]
         }
       ]
