@@ -1,5 +1,5 @@
---- rosegarden.appdata-old.xml	2024-06-07 18:27:30.117123029 +0100
-+++ rosegarden.appdata.xml	2024-06-07 20:28:05.342376524 +0100
+--- rosegarden-1/data/appdata/rosegarden.appdata.xml	2024-06-07 18:27:30.117123029 +0100
++++ rosegarden-1/data/appdata/rosegarden.appdata.xml	2024-06-07 20:28:05.342376524 +0100
 @@ -2,6 +2,7 @@
  <!-- Copyright 2018-2024 Rosegarden development team -->
  <component type="desktop">
