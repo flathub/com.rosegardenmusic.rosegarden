@@ -77,6 +77,10 @@
         {
           "type": "patch",
           "path": "rosegarden-desktop-file-keywords.patch"
+        },
+        {
+          "type": "patch",
+          "path": "rosegarden-appdata-id-and-desktop-launchable.patch"
         }
       ]
     }
