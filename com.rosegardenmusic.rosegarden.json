@@ -62,9 +62,9 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/23.12/rosegarden-23.12.tar.xz",
-          "sha256": "3f57e66460044efea082379c9706612fe135b6e81f16cbf0bebe859174fe9332",
-          "x-checked-data": {
+          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/24.06/rosegarden-24.06.tar.xz",
+          "sha256": "866cd4297c128a68208edd28a37808f278f630219533fff32441ad6647e09c27",
+          "x-checker-data": {
               "type": "anitya",
               "project-id": 8939,
               "url-template": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/$version/rosegarden-$version.tar.xz"
@@ -72,7 +72,11 @@
         },
         {
           "type": "patch",
-          "path": "rosegarden-mime-icon.patch"
+          "paths": [
+              "rosegarden-mime-icon.patch",
+              "rosegarden-desktop-file-keywords.patch",
+              "rosegarden-appdata-desktop-launchable.patch"
+          ]
         }
       ]
     }
