@@ -1,0 +1,93 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 66fb468..38cecf4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -191,20 +191,13 @@ endif()
+ add_feature_info(LIRCCLIENT LIRCCLIENT_FOUND "The LIRC client library, for remote control support")
+ 
+ # lilv for lv2 plugins
+-find_path(LILV_INCLUDE_DIR lilv/lilv.h
+-  PATH /usr/include/lilv-0)
+-if(NOT LILV_INCLUDE_DIR)
++pkg_check_modules(LILV lilv-0)
++if(NOT LILV_INCLUDE_DIRS)
+   message(WARNING "Failed to find Lilv header lilv/lilv.h for lv2 plugins")
+ endif()
+-find_library(LILV_LIBRARY lilv-0)
+-if(NOT LILV_LIBRARY)
+-  message(WARNING "Failed to find Lilv library for lv2 plugins")
+-endif()
+-find_path(LV2_INCLUDE_DIR lv2/urid/urid.h)
+-if(NOT LV2_INCLUDE_DIR)
+-  message(WARNING "Failed to find LV2 header for lv2 plugins")
+-endif()
+-if(LILV_INCLUDE_DIR AND LILV_LIBRARY AND LV2_INCLUDE_DIR)
++
++pkg_check_modules(LV2 lv2)
++if(LILV_INCLUDE_DIRS AND LILV_LIBRARIES AND LV2_INCLUDE_DIRS)
+   set(LILV_FOUND TRUE)
+ endif()
+ add_feature_info(LILV LILV_FOUND "The Lilv library, for lv2 plugins")
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index da79c9e..cb5754d 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -44,9 +44,9 @@ if(LIRCCLIENT_FOUND)
+ endif()
+ 
+ if(LILV_FOUND)
+-    include_directories(${LILV_INCLUDE_DIR})
++    include_directories(${LILV_INCLUDE_DIRS})
+     add_definitions(-DHAVE_LILV)
+-    set(rg_OPTIONAL_LIBS ${rg_OPTIONAL_LIBS} ${LILV_LIBRARY})
++    set(rg_OPTIONAL_LIBS ${rg_OPTIONAL_LIBS} ${LILV_LIBRARIES})
+ endif()
+ 
+ if(ALSA_FOUND)
+diff --git a/src/gui/application/RosegardenMainWindow.cpp b/src/gui/application/RosegardenMainWindow.cpp
+index f8df7a9..8169a0b 100644
+--- a/src/gui/application/RosegardenMainWindow.cpp
++++ b/src/gui/application/RosegardenMainWindow.cpp
+@@ -591,7 +591,9 @@ void RosegardenMainWindow::initStaticObjects()
+     LV2World::get();
+     LV2Utils::getInstance();
+     LV2Worker::getInstance();
++#ifdef HAVE_GTK2
+     LV2Gtk::getInstance();
++#endif
+ #endif
+     RosegardenSequencer::getInstance();
+ }
+diff --git a/src/gui/studio/AudioPluginLV2GUIWindow.cpp b/src/gui/studio/AudioPluginLV2GUIWindow.cpp
+index eddd09c..4be9c89 100644
+--- a/src/gui/studio/AudioPluginLV2GUIWindow.cpp
++++ b/src/gui/studio/AudioPluginLV2GUIWindow.cpp
+@@ -195,6 +195,7 @@ AudioPluginLV2GUIWindow::AudioPluginLV2GUIWindow
+ 
+     RG_DEBUG << "handle:" << m_handle << "widget:" << m_widget;
+ 
++#ifdef HAVE_GTK2
+     if (m_uiType == AudioPluginLV2GUI::GTK) {
+         LV2Gtk* lv2gtk = LV2Gtk::getInstance();
+         m_gwidget = lv2gtk->getWidget(m_widget, this);
+@@ -217,6 +218,9 @@ AudioPluginLV2GUIWindow::AudioPluginLV2GUIWindow
+         RG_DEBUG << "got gtk window" << m_parentWindow <<
+             m_parentWindow->parent();
+     }
++#else
++    RG_DEBUG << "gtk2 UI not available";
++#endif
+ }
+ 
+ AudioPluginLV2GUIWindow::~AudioPluginLV2GUIWindow()
+@@ -306,8 +310,10 @@ void AudioPluginLV2GUIWindow::closeEvent(QCloseEvent* event)
+     // tell the ui to tidy up
+     if (m_parentWindow) m_parentWindow->setParent(nullptr);
+ 
++#ifdef HAVE_GTK2
+     LV2Gtk* lv2gtk = LV2Gtk::getInstance();
+     lv2gtk->deleteWidget(m_gwidget);
++#endif
+ 
+     // this will cause this object to be deleted
+     m_lv2Gui->closeUI();
