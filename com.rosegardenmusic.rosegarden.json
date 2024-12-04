@@ -1,94 +1,94 @@
 {
-  "app-id": "com.rosegardenmusic.rosegarden",
-  "runtime": "org.kde.Platform",
-  "runtime-version": "5.15-24.08",
-  "sdk": "org.kde.Sdk",
-  "command": "rosegarden",
-  "rename-appdata-file": "rosegarden.appdata.xml",
-  "rename-icon": "rosegarden",
-  "rename-mime-file": "rosegarden.xml",
-  "rename-mime-icons": [
-    "application-x-rosegarden-composition",
-    "application-x-rosegarden-device",
-    "application-x-rosegarden-project",
-    "application-x-rosegarden-template"
-  ],
-  "finish-args": [
-    "--share=ipc",
-    "--socket=x11",
-    "--socket=pulseaudio",
-    "--device=dri",
-    "--filesystem=xdg-run/pipewire-0",
-    "--filesystem=home",
-    "--env=TMPDIR=/var/tmp",
-    "--env=ALSA_CONFIG_PATH=",
-    "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
-    "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/lib/ladspa"
-  ],
-  "add-extensions": {
-    "org.freedesktop.LinuxAudio.Plugins": {
-        "directory": "extensions/Plugins",
-        "version": "24.08",
-        "add-ld-path": "lib",
-        "merge-dirs": "ladspa;dssi;lv2",
-        "subdirectories": true,
-        "no-autodownload": true
-    }
-  },
-  "cleanup": [
-    "/share/aclocal",
-    "/share/man",
-    "/share/doc",
-    "/share/info",
-    "/share/gtk-doc",
-    "/include",
-    "/lib/pkgconfig",
-    "/lib/cmake",
-    "*.la"
-  ],
-  "modules": [
-    "shared-modules/linux-audio/lrdf.json",
-    "shared-modules/linux-audio/liblo.json",
-    "shared-modules/linux-audio/fftw3f.json",
-    "shared-modules/linux-audio/dssi.json",
-    "shared-modules/linux-audio/lv2.json",
-    "shared-modules/linux-audio/lilv.json",
-    {
-      "name": "rosegarden",
-      "buildsystem": "cmake-ninja",
-      "post-install": [
-        "mv /app/bin/rosegarden{,.bin}",
-        "install -Dm755 rosegarden.sh /app/bin/rosegarden",
-        "install -d /app/extensions/Plugins"
-      ],
-      "sources": [
-        {
-          "type": "archive",
-          "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/24.06/rosegarden-24.06.tar.xz",
-          "sha256": "866cd4297c128a68208edd28a37808f278f630219533fff32441ad6647e09c27",
-          "x-checker-data": {
-              "type": "anitya",
-              "project-id": 8939,
-              "url-template": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/$version/rosegarden-$version.tar.xz"
-          }
-        },
-        {
-          "type": "script",
-          "commands": [
-              "export LV2_PATH=/app/lib/lv2:/app/extensions/Plugins/lv2:$HOME/.lv2",
-              "exec rosegarden.bin \"$@\""
-          ],
-          "dest-filename": "rosegarden.sh"
-        },
-        {
-          "type": "patch",
-          "paths": [
-              "rosegarden-lilv.patch",
-              "rosegarden-desktop-file-keywords.patch",
-              "rosegarden-appdata-desktop-launchable.patch"
-          ]
+    "app-id": "com.rosegardenmusic.rosegarden",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.15-24.08",
+    "sdk": "org.kde.Sdk",
+    "command": "rosegarden",
+    "rename-appdata-file": "rosegarden.appdata.xml",
+    "rename-icon": "rosegarden",
+    "rename-mime-file": "rosegarden.xml",
+    "rename-mime-icons": [
+        "application-x-rosegarden-composition",
+        "application-x-rosegarden-device",
+        "application-x-rosegarden-project",
+        "application-x-rosegarden-template"
+    ],
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=pulseaudio",
+        "--device=dri",
+        "--filesystem=xdg-run/pipewire-0",
+        "--filesystem=home",
+        "--env=TMPDIR=/var/tmp",
+        "--env=ALSA_CONFIG_PATH=",
+        "--env=DSSI_PATH=/app/extensions/Plugins/dssi",
+        "--env=LADSPA_PATH=/app/extensions/Plugins/ladspa:/app/lib/ladspa"
+    ],
+    "add-extensions": {
+        "org.freedesktop.LinuxAudio.Plugins": {
+            "directory": "extensions/Plugins",
+            "version": "24.08",
+            "add-ld-path": "lib",
+            "merge-dirs": "ladspa;dssi;lv2",
+            "subdirectories": true,
+            "no-autodownload": true
         }
-      ]
-    }
-  ]
+    },
+    "cleanup": [
+        "/share/aclocal",
+        "/share/man",
+        "/share/doc",
+        "/share/info",
+        "/share/gtk-doc",
+        "/include",
+        "/lib/pkgconfig",
+        "/lib/cmake",
+        "*.la"
+    ],
+    "modules": [
+        "shared-modules/linux-audio/lrdf.json",
+        "shared-modules/linux-audio/liblo.json",
+        "shared-modules/linux-audio/fftw3f.json",
+        "shared-modules/linux-audio/dssi.json",
+        "shared-modules/linux-audio/lv2.json",
+        "shared-modules/linux-audio/lilv.json",
+        {
+            "name": "rosegarden",
+            "buildsystem": "cmake-ninja",
+            "post-install": [
+                "mv /app/bin/rosegarden{,.bin}",
+                "install -Dm755 rosegarden.sh /app/bin/rosegarden",
+                "install -d /app/extensions/Plugins"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/24.12/rosegarden-24.12.tar.xz",
+                    "sha256": "7f3f66136b09af14bd9998e4ade4d6204d458afd1694788fd6dcb3a96ebf15cc",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 8939,
+                        "url-template": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/$version/rosegarden-$version.tar.xz"
+                    }
+                },
+                {
+                    "type": "script",
+                    "commands": [
+                        "export LV2_PATH=/app/lib/lv2:/app/extensions/Plugins/lv2:$HOME/.lv2",
+                        "exec rosegarden.bin \"$@\""
+                    ],
+                    "dest-filename": "rosegarden.sh"
+                },
+                {
+                    "type": "patch",
+                    "paths": [
+                        "rosegarden-lilv.patch",
+                        "rosegarden-desktop-file-keywords.patch",
+                        "rosegarden-appdata-desktop-launchable.patch"
+                    ]
+                }
+            ]
+        }
+    ]
 }
