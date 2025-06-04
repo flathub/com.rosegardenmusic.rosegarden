@@ -64,8 +64,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/24.12/rosegarden-24.12.tar.xz",
-                    "sha256": "7f3f66136b09af14bd9998e4ade4d6204d458afd1694788fd6dcb3a96ebf15cc",
+                    "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/25.06/rosegarden-25.06.tar.xz",
+                    "sha256": "75fe52b005899471cc4b0e4954be5d35ee1ce8f41659ab8ef48a26178aa5c36d",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 8939,
@@ -79,12 +79,6 @@
                         "exec rosegarden.bin \"$@\""
                     ],
                     "dest-filename": "rosegarden.sh"
-                },
-                {
-                    "type": "patch",
-                    "paths": [
-                        "rosegarden-lilv.patch"
-                    ]
                 }
             ]
         }
