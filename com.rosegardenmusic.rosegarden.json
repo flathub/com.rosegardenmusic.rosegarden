@@ -64,8 +64,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/25.12/rosegarden-25.12.tar.xz",
-                    "sha256": "970bcd4cc33e4a7d7b3d1cc6d8c09bffbaa5f00a487b965c12f6e8dca8cafa6d",
+                    "url": "https://downloads.sourceforge.net/project/rosegarden/rosegarden/26.06/rosegarden-26.06.tar.xz",
+                    "sha256": "75d9f01c6aa46d1a08c1ac29ee375e4aab1dcdb670fb7230a9e69c09458d3bd9",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 8939,
