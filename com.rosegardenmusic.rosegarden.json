@@ -1,7 +1,7 @@
 {
     "app-id": "com.rosegardenmusic.rosegarden",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15-25.08",
+    "runtime-version": "6.11",
     "sdk": "org.kde.Sdk",
     "command": "rosegarden",
     "rename-appdata-file": "rosegarden.appdata.xml",
@@ -18,7 +18,7 @@
         "--socket=x11",
         "--socket=pulseaudio",
         "--device=dri",
-        "--filesystem=xdg-run/pipewire-0",
+        "--filesystem=xdg-run/pipewire-0:ro",
         "--filesystem=home",
         "--env=TMPDIR=/var/tmp",
         "--env=ALSA_CONFIG_PATH=",
@@ -56,6 +56,9 @@
         {
             "name": "rosegarden",
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DUSE_QT6=ON"
+            ],
             "post-install": [
                 "mv /app/bin/rosegarden{,.bin}",
                 "install -Dm755 rosegarden.sh /app/bin/rosegarden",
